@@ -25,18 +25,18 @@
 #define GPIO_PORT0_CONFIG_REG    0x06
 #define GPIO_PORT1_CONFIG_REG    0x07
 
-#define NCA9555_ID			0x00
+#define NCA9555_ID                      0x00
 
-#define NCA9555_BANK(offs)		((offs) > 8)
-#define NCA9555_BIT(offs)		(offs > 8 ? \
-					1u << (offs - 8) : 1u << (offs))
+#define NCA9555_BANK(offs)              ((offs) >= 8)
+#define NCA9555_BIT(offs)               (offs >= 8 ? \
+                                        1u << (offs - 8) : 1u << (offs))
 
 struct nca9555_dev {
-	struct device *dev;
-	struct i2c_client *i2c_client;
+        struct device *dev;
+        struct i2c_client *i2c_client;
 
-	int (*read_reg)(struct nca9555_dev *nca9555, u8 reg, u8 *val);
-	int (*write_reg)(struct nca9555_dev *nca9555, u8 reg, u8 val);
+        int (*read_reg)(struct nca9555_dev *nca9555, u8 reg, u8 *val);
+        int (*write_reg)(struct nca9555_dev *nca9555, u8 reg, u8 val);
 };
 
 #endif
